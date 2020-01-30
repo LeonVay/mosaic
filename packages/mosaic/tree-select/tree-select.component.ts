@@ -35,7 +35,16 @@ import {
     ViewChildren,
     ViewEncapsulation
 } from '@angular/core';
-import { ControlValueAccessor, FormGroupDirective, NG_VALIDATORS, NgControl, NgForm, Validator } from '@angular/forms';
+import {
+    ControlValueAccessor,
+    FormControlName,
+    FormGroupDirective,
+    NG_VALIDATORS,
+    NgControl,
+    NgForm,
+    NgModel,
+    Validator
+} from '@angular/forms';
 import {
     DOWN_ARROW,
     END,
@@ -409,21 +418,23 @@ export class McTreeSelect extends McTreeSelectMixinBase implements
     private tempValues: string | string[] | null;
 
     constructor(
-        public elementRef: ElementRef,
+        elementRef: ElementRef,
         readonly changeDetectorRef: ChangeDetectorRef,
         private readonly viewportRuler: ViewportRuler,
         private readonly ngZone: NgZone,
         private readonly renderer: Renderer2,
         defaultErrorStateMatcher: ErrorStateMatcher,
         @Attribute('tabindex') tabIndex: string,
-        @Optional() @Inject(NG_VALIDATORS) private rawValidators: Validator[],
-        @Optional() @Inject(MC_VALIDATION) private mcValidation: McValidationOptions,
         @Inject(MC_SELECT_SCROLL_STRATEGY) private readonly scrollStrategyFactory,
+        @Optional() @Inject(NG_VALIDATORS) public rawValidators: Validator[],
+        @Optional() @Inject(MC_VALIDATION) private mcValidation: McValidationOptions,
         @Optional() private readonly dir: Directionality,
         @Optional() parentForm: NgForm,
         @Optional() parentFormGroup: FormGroupDirective,
         @Optional() private readonly parentFormField: McFormField,
-        @Optional() @Self() ngControl: NgControl
+        @Optional() @Self() ngControl: NgControl,
+        @Optional() @Self() public ngModel: NgModel,
+        @Optional() @Self() public formControlName: FormControlName
     ) {
         super(elementRef, defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
@@ -464,7 +475,7 @@ export class McTreeSelect extends McTreeSelectMixinBase implements
         if (!this.tree) { return; }
 
         if (this.mcValidation.useValidation) {
-            setMosaicValidation.call(this, this.rawValidators, this.parentForm || this.parentFormGroup, this.ngControl);
+            setMosaicValidation(this);
         }
 
         this.tree.resetFocusedItemOnBlur = false;
@@ -776,11 +787,10 @@ export class McTreeSelect extends McTreeSelectMixinBase implements
         let visibleItems: number = 0;
         const totalItemsWidth = this.getTotalItemsWidthInMatcher();
         let totalVisibleItemsWidth: number = 0;
-        const itemMargin: number = 4;
 
         this.tags.forEach((tag) => {
             if (tag.nativeElement.offsetTop < tag.nativeElement.offsetHeight) {
-                totalVisibleItemsWidth += tag.nativeElement.getBoundingClientRect().width + itemMargin;
+                totalVisibleItemsWidth += this.getItemWidth(tag.nativeElement);
                 visibleItems++;
             }
         });
@@ -827,14 +837,23 @@ export class McTreeSelect extends McTreeSelectMixinBase implements
         this.renderer.appendChild(this.trigger.nativeElement, triggerClone);
 
         let totalItemsWidth: number = 0;
-        const itemMargin: number = 4;
         triggerClone.querySelectorAll('mc-tag').forEach((item) => {
-            totalItemsWidth += item.getBoundingClientRect().width as number + itemMargin;
+            totalItemsWidth += this.getItemWidth(item);
         });
 
         triggerClone.remove();
 
         return totalItemsWidth;
+    }
+
+    private getItemWidth(element: HTMLElement): number {
+        const computedStyle = window.getComputedStyle(element);
+
+        const width: number = parseInt(computedStyle.width as string);
+        const marginLeft: number = parseInt(computedStyle.marginLeft as string);
+        const marginRight: number = parseInt(computedStyle.marginRight as string);
+
+        return width + marginLeft + marginRight;
     }
 
     private handleClosedKeydown(event: KeyboardEvent) {

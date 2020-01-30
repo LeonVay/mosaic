@@ -39,10 +39,12 @@ import {
 } from '@angular/core';
 import {
     ControlValueAccessor,
+    FormControlName,
     FormGroupDirective,
     NG_VALIDATORS,
     NgControl,
     NgForm,
+    NgModel,
     Validator
 } from '@angular/forms';
 import { ActiveDescendantKeyManager } from '@ptsecurity/cdk/a11y';
@@ -498,12 +500,14 @@ export class McSelect extends McSelectMixinBase implements
         private readonly _renderer: Renderer2,
         defaultErrorStateMatcher: ErrorStateMatcher,
         elementRef: ElementRef,
-        @Optional() @Inject(NG_VALIDATORS) private rawValidators: Validator[],
+        @Optional() @Inject(NG_VALIDATORS) public rawValidators: Validator[],
         @Optional() private readonly _dir: Directionality,
         @Optional() parentForm: NgForm,
         @Optional() parentFormGroup: FormGroupDirective,
         @Optional() private readonly _parentFormField: McFormField,
         @Self() @Optional() ngControl: NgControl,
+        @Optional() @Self() public ngModel: NgModel,
+        @Optional() @Self() public formControlName: FormControlName,
         @Attribute('tabindex') tabIndex: string,
         @Inject(MC_SELECT_SCROLL_STRATEGY) private readonly _scrollStrategyFactory,
         @Optional() @Inject(MC_VALIDATION) private mcValidation: McValidationOptions
@@ -546,7 +550,7 @@ export class McSelect extends McSelectMixinBase implements
 
     ngAfterContentInit() {
         if (this.mcValidation.useValidation) {
-            setMosaicValidation.call(this, this.rawValidators, this.parentForm || this.parentFormGroup, this.ngControl);
+            setMosaicValidation(this);
         }
 
         this.initKeyManager();
@@ -835,11 +839,10 @@ export class McSelect extends McSelectMixinBase implements
         let visibleItems: number = 0;
         const totalItemsWidth = this.getTotalItemsWidthInMatcher();
         let totalVisibleItemsWidth: number = 0;
-        const itemMargin: number = 4;
 
         this.tags.forEach((tag) => {
             if (tag.nativeElement.offsetTop < tag.nativeElement.offsetHeight) {
-                totalVisibleItemsWidth += tag.nativeElement.getBoundingClientRect().width + itemMargin;
+                totalVisibleItemsWidth += this.getItemWidth(tag.nativeElement);
                 visibleItems++;
             }
         });
@@ -902,14 +905,23 @@ export class McSelect extends McSelectMixinBase implements
         this._renderer.appendChild(this.trigger.nativeElement, triggerClone);
 
         let totalItemsWidth: number = 0;
-        const itemMargin: number = 4;
         triggerClone.querySelectorAll('mc-tag').forEach((item) => {
-            totalItemsWidth += item.getBoundingClientRect().width as number + itemMargin;
+            totalItemsWidth += this.getItemWidth(item);
         });
 
         triggerClone.remove();
 
         return totalItemsWidth;
+    }
+
+    private getItemWidth(element: HTMLElement): number {
+        const computedStyle = window.getComputedStyle(element);
+
+        const width: number = parseInt(computedStyle.width as string);
+        const marginLeft: number = parseInt(computedStyle.marginLeft as string);
+        const marginRight: number = parseInt(computedStyle.marginRight as string);
+
+        return width + marginLeft + marginRight;
     }
 
     /** Handles keyboard events while the select is closed. */

@@ -1,3 +1,54 @@
+## 8.3.1 "Yummiest Pie" (2020-01-24)
+
+### Mosaic
+
+
+ * bug fix  **modal:** for apply changes need run changeDetection (#UIM-348) ([#394](https://github.com/positive-js/mosaic/issues/394)) ([8edd198fe1d8d55a4c373c31839d29f363d35489](https://github.com/positive-js/mosaic/commit/8edd198fe1d8d55a4c373c31839d29f363d35489)), closes [#UIM-348](https://github.com/positive-js/mosaic/issues/UIM-348)
+ * bug fix  **select, tree-select:** "one more" label will hide if open select (#UIM-352) ([#393](https://github.com/positive-js/mosaic/issues/393)) ([6724cc4ed8e3d848baec357dee0dc7007641f1be](https://github.com/positive-js/mosaic/commit/6724cc4ed8e3d848baec357dee0dc7007641f1be)), closes [#UIM-352](https://github.com/positive-js/mosaic/issues/UIM-352)
+ * bug fix  **validation:** validation does not work after build with optimization=true (#UIM-349) ([#391](https://github.com/positive-js/mosaic/issues/391)) ([28aa649b2ca68ddab617922604c31921ee641892](https://github.com/positive-js/mosaic/commit/28aa649b2ca68ddab617922604c31921ee641892)), closes [#UIM-349](https://github.com/positive-js/mosaic/issues/UIM-349)
+ * bug fix  **visual:** layout-row and layout-column are not have min-width and min-height (#UIM-355) ([#392](https://github.com/positive-js/mosaic/issues/392)) ([fa5a4d8be4492cc942b3d4196b326129f0b023d6](https://github.com/positive-js/mosaic/commit/fa5a4d8be4492cc942b3d4196b326129f0b023d6)), closes [#UIM-355](https://github.com/positive-js/mosaic/issues/UIM-355)
+
+### Formater
+
+
+* bug fix  **formatter:** date-adapter does not have methods for open range (#UIM-163) ([#395](https://github.com/positive-js/mosaic/issues/395)) ([c385849f7391c05acf89704ceab28dab0b5972f6](https://github.com/positive-js/mosaic/commit/c385849f7391c05acf89704ceab28dab0b5972f6)), closes [#UIM-163](https://github.com/positive-js/mosaic/issues/UIM-163)
+
+### Docs
+
+
+ * bug fix  **docs:** fix bold button text ([#388](https://github.com/positive-js/mosaic/issues/388)) ([04921ce3a7fa2d50cc5500f4d827049b43c2bbeb](https://github.com/positive-js/mosaic/commit/04921ce3a7fa2d50cc5500f4d827049b43c2bbeb))
+ * feature  **docs:** adding timepicker range example ([#390](https://github.com/positive-js/mosaic/issues/390)) ([f90b82aff4cdcbb9ac4b561f97d5a828ae9be1cd](https://github.com/positive-js/mosaic/commit/f90b82aff4cdcbb9ac4b561f97d5a828ae9be1cd))
+ * feature  **docs:** adding typography example ([#386](https://github.com/positive-js/mosaic/issues/386)) ([081bb22d22da8bc57ee4b681afabecf3f635830e](https://github.com/positive-js/mosaic/commit/081bb22d22da8bc57ee4b681afabecf3f635830e))
+
+# 8.3.0 "Unquestionable Disturbing" (2020-01-15)
+
+### Mosaic
+
+
+ * bug fix  **input:** need notify if mc-cleaner used with input that have type=number ([#383](https://github.com/positive-js/mosaic/issues/383)) ([1accbf294617388d638ffe296ecede7185e030cd](https://github.com/positive-js/mosaic/commit/1accbf294617388d638ffe296ecede7185e030cd))
+ * bug fix  **number:** stepUp and stepDown are not work with empty value (#UIM-333) ([#382](https://github.com/positive-js/mosaic/issues/382)) ([254f5ca400543f0649e64691bca3293ac4048dba](https://github.com/positive-js/mosaic/commit/254f5ca400543f0649e64691bca3293ac4048dba)), closes [#UIM-333](https://github.com/positive-js/mosaic/issues/UIM-333)
+ * bug fix  **timepicker:** Implement value updates after changing the format (#UIM-247) ([#380](https://github.com/positive-js/mosaic/issues/380)) ([9837c9e8a2e6691017e8b40e17b00a5fc536c814](https://github.com/positive-js/mosaic/commit/9837c9e8a2e6691017e8b40e17b00a5fc536c814)), closes [#UIM-247](https://github.com/positive-js/mosaic/issues/UIM-247)
+ * feature  **common:** fixing tree and schematics tslint ([#379](https://github.com/positive-js/mosaic/issues/379)) ([02c2cd4113e8f93fc9877f9757e630cfa452a277](https://github.com/positive-js/mosaic/commit/02c2cd4113e8f93fc9877f9757e630cfa452a277))
+ * feature  **optgroup:** added optgroup in select and list (#UIM-318) ([#373](https://github.com/positive-js/mosaic/issues/373)) ([63f54c6821fc76cc7613a8a1f7efcd1acc179f64](https://github.com/positive-js/mosaic/commit/63f54c6821fc76cc7613a8a1f7efcd1acc179f64)), closes [#UIM-318](https://github.com/positive-js/mosaic/issues/UIM-318) [#UIM-318](https://github.com/positive-js/mosaic/issues/UIM-318)
+ * feature  **select:** Добавить опцию для скрытия чекбосов (#UIM-252) ([#365](https://github.com/positive-js/mosaic/issues/365)) ([0911f9a67f185370d3d6393e97d503052f512763](https://github.com/positive-js/mosaic/commit/0911f9a67f185370d3d6393e97d503052f512763)), closes [#UIM-252](https://github.com/positive-js/mosaic/issues/UIM-252)
+ * feature  **validation:** changed validation logic (#UIM-148) ([#311](https://github.com/positive-js/mosaic/issues/311)) ([12cd4a150a6613d048188bc505e9ef11b05cf34a](https://github.com/positive-js/mosaic/commit/12cd4a150a6613d048188bc505e9ef11b05cf34a)), closes [#UIM-148](https://github.com/positive-js/mosaic/issues/UIM-148)
+
+### Formater
+
+
+ * feature  **formatter:** changed format for seconds (#UIM-285) ([#364](https://github.com/positive-js/mosaic/issues/364)) ([37d42dfe5a727d77bd7166631788eba82972a524](https://github.com/positive-js/mosaic/commit/37d42dfe5a727d77bd7166631788eba82972a524)), closes [#UIM-285](https://github.com/positive-js/mosaic/issues/UIM-285)
+
+### Docs
+
+
+ * bug fix  **docs:** setting background and color for body ([#377](https://github.com/positive-js/mosaic/issues/377)) ([9de748962b46edece7fbb7085758b3c13d700acc](https://github.com/positive-js/mosaic/commit/9de748962b46edece7fbb7085758b3c13d700acc))
+ * bug fix  **docs:** tooltip example bold text ([#381](https://github.com/positive-js/mosaic/issues/381)) ([12733ba13559c57500c9e009331c7bb38f801015](https://github.com/positive-js/mosaic/commit/12733ba13559c57500c9e009331c7bb38f801015))
+ * feature  **docs:** adding button examples ([#384](https://github.com/positive-js/mosaic/issues/384)) ([be602b8c9e5a6ecad315b7ef5380e468e4ea4c34](https://github.com/positive-js/mosaic/commit/be602b8c9e5a6ecad315b7ef5380e468e4ea4c34))
+ * feature  **docs:** adding modal examples ([#374](https://github.com/positive-js/mosaic/issues/374)) ([8308c76344ae3de94cf81e398110370a95cdc7e7](https://github.com/positive-js/mosaic/commit/8308c76344ae3de94cf81e398110370a95cdc7e7))
+ * feature  **docs:** adding progress spinner examples (#UIM-273) ([#372](https://github.com/positive-js/mosaic/issues/372)) ([1e742e4a1836eb2505be194a862c46e3d689ce92](https://github.com/positive-js/mosaic/commit/1e742e4a1836eb2505be194a862c46e3d689ce92)), closes [#UIM-273](https://github.com/positive-js/mosaic/issues/UIM-273)
+ * feature  **docs:** adding sidepanel examples ([#376](https://github.com/positive-js/mosaic/issues/376)) ([9f4c76ab85da1963cdbb6c6f352c9a121feba8ca](https://github.com/positive-js/mosaic/commit/9f4c76ab85da1963cdbb6c6f352c9a121feba8ca))
+ * feature  **docs:** updating the structure stackblitz examples ([#362](https://github.com/positive-js/mosaic/issues/362)) ([44cd5445c568b4008b689015776acca7403ba632](https://github.com/positive-js/mosaic/commit/44cd5445c568b4008b689015776acca7403ba632))
+
 ## 8.2.2 "Fluent Order" (2019-12-16)
 
 ### Mosaic
